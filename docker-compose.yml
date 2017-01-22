@@ -1,0 +1,41 @@
+version: '2'
+
+volumes:
+  postgres_data: {}
+
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
+
+  elastic:
+    image: elasticsearch:latest
+    ports:
+      - "9200:9200"
+
+  rabbit:
+    image: rabbitmq:latest
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    # command: sneakers work ActiveJob::QueueAdapters::SneakersAdapter::JobWrapper --require app/jobs/save_bugs_job.rb
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - rabbit
+      - elastic
+    links:
+      - db
+      - rabbit
+      - elastic

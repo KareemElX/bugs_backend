@@ -1,0 +1,21 @@
+To Create A New Bug:
+
+curl -X POST -H "Cache-Control: no-cache" -H "Postman-Token: 43e7499a-3b2c-7b25-a3e8-fbad830fff51" "http://localhost:3000/bugs?utf8=%E2%9C%93&authenticity_token=nUDGXnHw7kx9atfhUIcgGWL4o9zcvg8hoKcqDtzeu8VfBncEzi16l6KtMG3OyhD5ok%2FBeYlbHi1aPNcYtiXiwA%3D%3D&bug%5Bapp_token%5D=123&bug%5Bstatus%5D=qwe&bug%5Bpriority%5D=adsf&bug%5Bcomment%5D=adsfdsafdafs&commit=Save%2BBug"
+
+To Get a bug by its number and app_token
+
+curl -X GET -H "Cache-Control: no-cache" -H "Postman-Token: 0811ce71-2d34-0a23-979e-68d0aeaaa437" "http://localhost:3000/bugs/14?app_token=123"
+
+To Get all bugs
+
+curl -X GET -H "Cache-Control: no-cache" -H "Postman-Token: 7ecf90f6-e439-c4bc-eb89-bad7de73c037" "http://localhost:3000/bugs/"
+
+* filter by a certain app_token
+curl -X GET -H "Cache-Control: no-cache" -H "Postman-Token: 15373735-32f6-422b-049a-e33229189500" "http://localhost:3000/bugs/?app_token=123"
+
+
+#TODO
+
+ElasticSearch Partial Filter (need a nGram tokenizer)
+Bug model choices fields (need to make a validation in the model for certain fields)
+Install a queueing backend that connects to rabbitMQ instead of the rails default

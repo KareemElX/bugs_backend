@@ -1,0 +1,23 @@
+<%= form_for :bug, url: bugs_path do |f| %>
+  <p>
+    <%= f.label :app_token %><br>
+    <%= f.text_field :app_token %>
+  </p>
+  <p>
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </p>
+ 
+  <p>
+    <%= f.label :priority %><br>
+    <%= f.text_area :priority %>
+  </p>
+  <p>
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
